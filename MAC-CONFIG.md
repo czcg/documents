@@ -1,6 +1,12 @@
 ## 前端开发环境基本配置 —— Mac 篇
 
-__以下设置针对在 Mac 下做开发，特别是前端开发的小伙伴做参考。__
+以下设置针对在 Mac 下做开发，特别是前端开发的小伙伴做参考。在此之前，我们需要调整一下系统的一些默认设置，用来提高操控效率。
+
+打开 System Preferences(系统偏好设置) > Keyboard(键盘) > Shortcuts(快捷键)，选中 All controls(所有控制)，好了，现在我们可以用 `tab` 键进行焦点切换，用全键盘控制对话框了。
+
+再去鼠标、触摸板的设置里，将所有的勾都打上，Mac 为我们设置的这么多快捷操作，不用岂不可惜！
+
+操作层面解决了，下面我们来配置一些工具：
 
 ### 1. Xcode 工具安装
 如果有原生开发需要，安装 `Xcode` 是不二选择，从 [Mac App Store](https://itunes.apple.com/cn/app/xcode/id497799835) 中免费下载即可，否则的话，我们只需安装 “Command Line Tools” 即可，在终端窗口键入以下命令：
@@ -26,19 +32,18 @@ xcode-select --install
 ```
 brew install git node ccat mongodb vim
 ```
----
-HomeBrew 还有个精致的扩展 [Homebrew Cask](https://caskroom.github.io/)，可以用它来很方便的安装一些 APP，同样，我们不用一个个的去官网下各个 APP 的安装包了，安装方式如下：
+HomeBrew 还有个精致的扩展 [Homebrew Cask](https://caskroom.github.io/)，安装方式如下：
 ```
 brew tap caskroom/cask
 ```
 
-安装完 cask，就可以用它来安装以下一些常用的开发工具了：
+安装完 cask 后，可以用它通过命令行来快速安装一些 APP 了。以下是一些前端开发工作中常用的开发工具：
 
-- __atom__ 开源的前端 IDE，
-- __google-chrome__ 那啥，不解释
-- __iterm2__ 系统终端替代工具，必装！
-- __dash__ 开发文档查询工具
-- __alfred__ 逆天工具，当然，那是在付费了的情况下
+- __Atom__ 开源的前端 IDE，
+- __Google-Chrome__ 那啥，不解释
+- __Iterm2__ 系统终端替代工具，必装！
+- __Dash__ 开发文档查询工具
+- __Alfred__ 逆天工具，当然，那是在付费了的情况下
 - ...
 
 安装命令如下：
@@ -57,7 +62,7 @@ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/i
 #via wget
 sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
 ```
-可以说 [Oh-My-Zsh](http://ohmyz.sh/) + iTerm2 两者结合，是 Mac 环境下命令行的最佳拍档，当然，如果你有许多机会用 ssh 做远程登录，再加上 [tmux](http://tmux.github.io/) (一个优秀的终端复用软件)这件利器，那就更上一层楼了！同样的，tmux 也可以通过 `brew install tmux` 命令来快速安装，其用法可以去官网文档查看，这里就不多解释了。
+可以说 [Oh-My-ZSH](http://ohmyz.sh/) + iTerm2 两者结合，是 Mac 环境下命令行的最佳拍档，当然，如果你有许多机会用 ssh 做远程登录，再加上 [tmux](http://tmux.github.io/) (一个优秀的终端复用软件)这件利器，那就更上一层楼了！同样的，tmux 也可以通过 `brew install tmux` 命令来快速安装，其用法可以去官网文档查看，这里就不多解释了。
 
 ### 4. npm 优化配置
 安装完 Nodejs 后，其自带的包管理工具 npm 是我们需要经常用到的，但是其默认安装源是国外的 server 地址，由于众所周知的原因，很多时候由于网络环境的影响，造成包安装异常，甚至失败。因此，在国内的话，建议配置使用淘宝镜像源：
@@ -72,18 +77,29 @@ npm install -g cnpm --registry=https://registry.npm.taobao.org
 npm set registry https://registry.npm.taobao.org/
 ```
 
-这样配置后，node 包安装的速度将大大提高。
+这样配置后 NPM 包安装的速度将大大提高。
 
 ### 5. Oh My ZSH! 配置
 利器装完后，对其进行适当的配置，能使你的工作效率锦上添花。编辑文件 `~/.zshrc`，我们可以为其自定义个性化主题以及配置插件。
 
 - 主题定义
-找到 `ZSH_THEME=` 这行，从[主题列表](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes)里选择一款自己中意的吧，我选的是 "gianu"，编辑改行内容为 `ZSH_THEME="gianu"` 即完成了。
+找到 `ZSH_THEME=` 这行，从[主题列表](https://github.com/robbyrussell/oh-my-zsh/wiki/Themes)里选择一款自己中意的吧，我选的是 "gianu"，按以下方式编辑该行内容即可。
+```
+ZSH_THEME="gianu"
+```
+
 - 插件定义
 可以从[插件列表页面](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugins-Overview)查看内置插件列表，捡自己合适的选呗，选完后，注意查找 `.zshrc` 文件里开头为 `plugins=` 那行，把插件名称写入，之后，终端会自动开启开插件，例如：
 ```
 plugins=(git autojump colored-man common-aliases npm)
 ```
+
+- 设置别名
+我们之前用 HomeBrew 安装了 cat 的增强版 ccat，可以在这个配置文件里添加一行：
+```
+alias cat="ccat"
+```
+OK，这下，我们每次使用 cat 命令就等于使用了 ccat，多么的…… 偷梁换柱！
 
 在这里特别说一下这个 git 插件，让经常写 git 命令的我感觉如鱼得水，各种简写，效率飞升啊。查看 [Plugin:git](https://github.com/robbyrussell/oh-my-zsh/wiki/Plugin:git) 感受一下吧。
 
