@@ -24,35 +24,35 @@ Git 的配置文件中，其所配置的选项其实是层叠的，在每个项�
 
 在获取秘钥前，先去看看你有没有 `~/.ssh` 目录，没有的话，那应该就还没有生成过秘钥，那我们开始工作（有 `$` 符号提示的地方是我们要输入的命令）：
 
-- 生成秘钥，采用 RSA 算法，长度为 4096 字节，也可以用 1024 或者 2048 的参数，越长越安全嘛。
+⑴ 生成秘钥，采用 RSA 算法，长度为 4096 字节，也可以用 1024 或者 2048 的参数，越长越安全嘛。
 ```
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 此时，终端会提示 `Generating public/private rsa key pair.`，秘钥的长度越长，生成时间也越久。
 
-- 生成完后，终端再次提示以下内容，采用默认的路径和文件存放你的秘钥就好，直接回车确认。
+⑵ 生成完后，终端再次提示以下内容，采用默认的路径和文件存放你的秘钥就好，直接回车确认。
 ```
 Enter a file in which to save the key (/Users/you/.ssh/id_rsa): [Press enter]
 ```
 
-- 此处需要你输入一个“安全掩码”(secure passphrase)，这个你随意输，貌似需要 4 位以上。为什么需要这个掩码呢，有兴趣可以延伸阅读一下这篇文章：["Working with SSH key passphrases"](https://help.github.com/articles/working-with-ssh-key-passphrases)。当然，你也可以什么都不输入，直接回车。
+⑶ 此处需要你输入一个“安全掩码”(secure passphrase)，这个你随意输，貌似需要 4 位以上。为什么需要这个掩码呢，有兴趣可以延伸阅读一下这篇文章：["Working with SSH key passphrases"](https://help.github.com/articles/working-with-ssh-key-passphrases)。当然，你也可以什么都不输入，直接回车。
 ```
 Enter passphrase (empty for no passphrase): [Type a passphrase]
 Enter same passphrase again: [Type passphrase again]
 ```
 
-- 此时应该会有一串称之为 "key fingerprint" 的字符串显示出来，说明秘钥已成功是生成。接下来将这个新鲜出炉的秘钥添加到 `ssh-agent` 之中，先开启它：
+⑷ 此时应该会有一串称之为 "key fingerprint" 的字符串显示出来，说明秘钥已成功是生成。接下来将这个新鲜出炉的秘钥添加到 `ssh-agent` 之中，先开启它：
 ```
 $ eval "$(ssh-agent -s)"
 ```
 执行成功后，会有类似 `Agent pid 59566` 的结果返回。
 
-- 添加秘钥：
+⑸ 添加秘钥：
 ```
 $ ssh-add ~/.ssh/id_rsa
 ```
 
-- 好了，现在你可以执行以下命令将公共秘钥复制到剪贴板里，爱给谁给谁了。
+⑹ 好了，现在你可以执行以下命令将公共秘钥复制到剪贴板里，爱给谁给谁了。
 ```
 # Mac Terminal
 $ pbcopy < ~/.ssh/id_rsa.pub
@@ -62,7 +62,7 @@ $ pbcopy < ~/.ssh/id_rsa.pub
 $ clip < ~/.ssh/id_rsa.pub
 ```
 
-- 可以与远程仓库地址做一下通讯测试，看看秘钥是否生效了，下面是与 github 服务器通讯的示例：
+⑺ 可以与远程仓库地址做一下通讯测试，看看秘钥是否生效了，下面是与 github 服务器通讯的示例：
 ```
 ssh -T git@github.com
 ```
@@ -82,18 +82,18 @@ git clone git@github.com:czcg/documents.git mydoc
 ## 将本地项目添加到远程初始化的空仓库中
 有很多时候，我们会事先在本地搭建好项目的初始化代码，这时想要推送到远程仓库，比如 Github 或者 Bitbucket 等，需要执行如下的一系列命令：
 
-- 初始化本地项目，完成后 Git 会在本地项目的目录中新建一个隐藏目录 `.git` 作为其仓库
+⑴ 初始化本地项目，完成后 Git 会在本地项目的目录中新建一个隐藏目录 `.git` 作为其仓库
 ```
 git init
 ```
 
-- 将本地文件全部迁入：
+⑵ 将本地文件全部迁入：
 ```
 git add --all
 git commit -m 'your commit message'
 ```
 
-- 添加远程目标仓库，并将本地源码推送出去
+⑶ 添加远程目标仓库，并将本地源码推送出去
 ```
 git remote add origin git@github.com:czcg/documents.git
 git push -u origin master
@@ -102,7 +102,7 @@ git push -u origin master
 ## 分支操作
 git 工具一个迷人的地方就是可以快速的操作和切换分支，合理利用其分支功能，可以使得协同开发模式如鱼得水。
 
-- 基本分支操作
+⑴ 基本分支操作
 ```
 # 获取本地分支
 git branch
@@ -124,7 +124,7 @@ git push origin :branch_name
 git checkout branch_name
 ```
 
-- 创建新分支
+⑵ 创建新分支
 ```
 # 通常做法
 git branch new_branch_name
@@ -135,7 +135,7 @@ git checkout new_branch_name
 git checkout -b new_branch_name
 ```
 
-- 获取远程的其他分支。通常我们 clone 下一个项目后，本地只有一个 master 分支，如何才能使用远程上的其他开发分支呢？
+⑶ 获取远程的其他分支。通常我们 clone 下一个项目后，本地只有一个 master 分支，如何才能使用远程上的其他开发分支呢？
 ```
 git checkout -t origin remote_branch_name
 ```
@@ -143,18 +143,18 @@ git checkout -t origin remote_branch_name
 ## 整理合并你的 commit 后再推送到主分支
 通常情况下，我们规定不要在 master 分支上直接做开发，而是会根据项目需求在其他开发分支进行操作。当我们完成一个功能后，需要将代码合并到 master 分支，如无冲突，我们用 `git merge` 命令能很轻松的进行这个分支的合并。但实际情况是，我们如果用 `git log` 命令查看 master 分支的 commit 时会发现，可能有太多的开发分支上的 commit 也一起合并了进来。其实对于 master 分支来讲，我们不太关注某个具体开发细节的 commit，那是开发分支自己的事情。如何避免该问题，我们需要一些技巧，让这些开发 commit 在 master 分支上合并成一个。
 
-- 按照常规完成合并操作
+⑴ 按照常规完成合并操作
 ```
 # 目前在 master 分支上
 git merge dev_branch
 ```
 
-- 如无冲突，进行下一步关键操作
+⑵ 如无冲突，进行下一步关键操作
 ```
 git reset origin/master
 ```
 
-- 通过与远程分支的自动比对，新的或修改过的文件重新变成未迁入状态，此时重新进行迁入工作
+⑶ 通过与远程分支的自动比对，新的或修改过的文件重新变成未迁入状态，此时重新进行迁入工作
 ```
 git add --all
 git commit 'dev_branch: some module finished.'
