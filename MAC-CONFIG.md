@@ -110,6 +110,8 @@ Github 出品的这款开源 IDE，已成为了我的首选。Atom 提供了命�
 
 - __atom-beautify__
 代码格式化工具，特点是支持的文件格式够多。
+- __atom-ternjs__
+JS代码智能提示补全。
 - __autocomplete-paths__
 自动提示文件路径，这在文档里写 link 或图片路径的时候非常有用。
 - __color-picker__
@@ -120,8 +122,6 @@ Github 出品的这款开源 IDE，已成为了我的首选。Atom 提供了命�
 给不同类型的文件分配他们自己的类型图标，给人以醒目的提示。
 - __highlight-selected__
 双击一个变量或单词，通篇代码里与其相同的代码都会高亮，debug 时非常好用。
-- __language-vue__
-使 Atom 增加对 vue 文件的支持，用在 Vue 的组件化开发中。
 - __linter & linter-eslint__
 这两个插件让我们可以实时对自己的 js 代码进行语法和格式的校验和检查。
 - __merge-conflicts__
@@ -136,12 +136,12 @@ Github 出品的这款开源 IDE，已成为了我的首选。Atom 提供了命�
 通过底色显示当前所示颜色代码的真实色彩，并能在命令面板(Ctrl + P) 中键入 `Pigments: Find Colors` 索引整个项目使用过的颜色进行选择。
 - __remote-sync__
 与远程机器做文件同步，支持 FTP/SCP/SFTP 等协议。
+- __termination__
+在 Atom 中打开终端窗口，方便项目运行。
 - __tree-view-git-status__
 在左侧文档树中显示当前 git 分支、代码迁入状况的插件，实用！
-- __vue-autocomplete__
-vue 文件的代码自动完成插件。
 
 复制并执行以下命令，快速安装以上所有插件：
 ```
-apm install atom-beautify autocomplete-paths color-picker emmet file-icons highlight-selected language-vue linter linter-eslint merge-conflicts minimap minimap-find-and-replace open-recent pigments remote-sync tree-view-git-status vue-autocomplete
+apm install atom-beautify atom-ternjs autocomplete-paths color-picker emmet file-icons highlight-selected linter linter-eslint merge-conflicts minimap minimap-find-and-replace open-recent pigments remote-sync termination tree-view-git-status
 ```
