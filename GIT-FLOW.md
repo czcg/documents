@@ -41,7 +41,21 @@ Enter passphrase (empty for no passphrase): [Type a passphrase]
 Enter same passphrase again: [Type passphrase again]
 ```
 
-⑷ 此时应该会有一串称之为 "key fingerprint" 的字符串显示出来，说明秘钥已成功是生成。接下来将这个新鲜出炉的秘钥添加到 `ssh-agent` 之中，先开启它：
+⑷ 此时应该会有一串称之为 "key fingerprint" 的字符串显示出来，说明秘钥已成功是生成，例如以下字符串图形：
+```
++---[RSA 4096]----+
+|   + .           |
+|  o +            |
+| . . +           |
+|+.o.+ o  o       |
+|=+=oo.. S + .    |
+|.B =.+ = * o.    |
+|. + ..=.oo=+o.   |
+| .    o o.+++.   |
+|     .   Eoo..   |
++----[SHA256]-----+
+```
+接下来将这个新鲜出炉的秘钥添加到 `ssh-agent` 之中，先开启它：
 ```
 $ eval "$(ssh-agent -s)"
 ```
@@ -52,7 +66,7 @@ $ eval "$(ssh-agent -s)"
 $ ssh-add ~/.ssh/id_rsa
 ```
 
-⑹ 好了，现在你可以执行以下命令将公共秘钥复制到剪贴板里，爱给谁给谁了。
+⑹ 好了，现在你可以执行以下命令将公共秘钥复制到剪贴板里，爱给谁给谁了。如果要在 GitHub 网站使用，就在自己的 setting 中将该公钥内容复制进 SSH keys 中。
 ```
 # Mac Terminal
 $ pbcopy < ~/.ssh/id_rsa.pub
